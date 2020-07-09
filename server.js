@@ -13,8 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+//Create a set of variables (hint: arrays of objects) for holding the reservation and waitlist data
 
+var reservation = []
+var waitlist = []
 
+//Create a set of routes that then display this data as JSONs. Users should be given these JSONs if they visit the appropriate page
+// (i.e. if a user visits localhost:3000/api/tables they should see a JSON of table data).
 
 
 
