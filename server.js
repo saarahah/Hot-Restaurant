@@ -22,6 +22,21 @@ var waitlist = []
 // (i.e. if a user visits localhost:3000/api/tables they should see a JSON of table data).
 
 
+app.post("/tables", (req, res) => {
+  const chosen = req.body;
+console.log(req.body);
+
+  if (reservation.length > 5) {
+    waitlist.push(chosen);
+    res.json(waitlist)
+    console.log("We are currently at full capacity, you have been added to the wait list!");
+  }
+  else {
+    reservation.push(chosen)
+    res.json(reservation);
+    console.log("Looks like we have your reservation on file!");
+  }
+})
 
 
 
