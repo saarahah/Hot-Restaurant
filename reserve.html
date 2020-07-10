@@ -26,13 +26,13 @@
             <h2 class = "text-center">Make Your Reservation</h2>
             <br>
             <div class = "text-center">
-            <a href = "tables.html">
+            <a href = "/tables">
             <button class = "btn btn-lg btn-danger" id= #view>
               <span class = "fa fa-list-alt"></span>
               View Tables
             </button>
           </a>
-          <a href = "home.html">
+          <a href = "/">
             <button class="btn btn-lg btn-default">
                 <span class="fa fa-home"></span>
               </button>
@@ -85,11 +85,11 @@
                 };
           
                 // Question: What does this code do??
-                $.post("/api/reservation", newReservation)
-                  .then(function(data) {
-                    console.log("add.html", data);
-                    alert("Adding reservation...");
-                  });
+                // $.post("/api/reservation", newReservation)
+                //   .then(function(data) {
+                //     console.log("add.html", data);
+                //     alert("Adding reservation...");
+                //   });
               });
             </script>
 
