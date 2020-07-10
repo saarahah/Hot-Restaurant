@@ -32,23 +32,22 @@
               Make Reservation
             </button>
           </a>
-        <button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
+        <button class="btn btn-lg btn-default" id = "reserve"><span class="fa fa-home"></span></button></a>
         </div>
         </div>
         <div class = "row">
             <div class = "col-lg-12">
-                <div class= "card">
-                    <div class = "card=header">
+                <div class= "card mt-4">
+                    <div class = "card-header">
                         <h4>Current Reservations</h4>
                     </div>
-                    <div class = "card-body">
+                <div class = "card-body">
                         <ul id = "tableList" class = "list-group">
                             <li class = "list-group-item mt-4"></li>
                             <li class = "list-group-item mt-4"></li>
                             <li class = "list-group-item mt-4"></li>
                             <li class = "list-group-item mt-4"></li>
                         </ul>
-                    </div>
                 </div>
                 <div class = "card mt-4">
                     <div class = "card-header">
@@ -68,30 +67,33 @@
         </div>
 
         <script type="text/javascript">
-            $("#reservation").on("click", function() {
-              var searchedCharacter = $("#character-search").val().trim();
+
+            //start ajax call
+            $.ajax({
+                url:"/api/tables",
+                method: "GET"
+            }).then(function(tData) {
+                console.log(tData);
+            
+            //for loop to show each reservation by user
+            for (var i=0;i<tData.length; i++) {
+                var tableList = $("#tableList");
+                var listItem = $("<li class = 'list-group-item mt-4'>")
+            
+              listItem.append(
+                $("<h3>").val("Table #" + (i+1)),
+                $("<h3>").val("ID: " + tData[i].userID),
+                $("<h3>").val("Name: " + tData[i].userName),
+                $("<h3>").val("Email: " + tData[i].userEmail),
+                $("<h3>").val("Phone: " + tData[i].phoneNumber),
+              );
         
-              // Using a RegEx Pattern to remove spaces from searchedCharacter
-              // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-              searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
-        
-              $.get("/api/characters/" + searchedCharacter, function(data) {
-                console.log(data);
-                if (data) {
-                  $("#stats").show();
-                  $("#name").text(data.name);
-                  $("#role").text(data.role);
-                  $("#age").text(data.age);
-                  $("#force-points").text(data.forcePoints);
-                } else {
-                  $("#name").text(
-                    "The force is not strong with this one. Your character was not found.");
-                  $("#stats").hide();
-                }
-              });
+              listItem.appendTo(tableList);
+            }
             });
         
           </script>
+        
+</body>
+</html>
 
-    </body>
-    </html>
