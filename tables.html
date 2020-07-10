@@ -26,8 +26,10 @@
             <h2 class = "text-center">We Only Have 5 Tables! Book Your Seat Before They Are All Gone!</h2>
             <br>
             <div class = "text-center">
-            <a href = "/reserve">
-            <button class = "btn btn-lg btn-danger" id = "reservation">
+
+            <a href = "reserve.html">
+            <button class = "btn btn-lg btn-danger">
+
               <span class = "fa fa-credit-card"></span>
               Make Reservation
             </button>
@@ -133,11 +135,11 @@
                 var listItem = $("<li class = 'list-group-item mt-4'>")
             
               listItem.append(
-                $("<h3>").val("Table #" + (i+1)),
-                $("<h3>").val("ID: " + tData[i].userID),
-                $("<h3>").val("Name: " + tData[i].userName),
-                $("<h3>").val("Email: " + tData[i].userEmail),
-                $("<h3>").val("Phone: " + tData[i].phoneNumber),
+                $("<h2>").val("Table #" + (i+1)),
+                $("<h2>").val("ID: " + tData[i].userID),
+                $("<h2>").val("Name: " + tData[i].userName),
+                $("<h2>").val("Email: " + tData[i].userEmail),
+                $("<h2>").val("Phone: " + tData[i].phoneNumber),
               );
         
               listItem.appendTo(tableList);
