@@ -15,44 +15,48 @@ app.use(express.json());
 
 //Create a set of variables (hint: arrays of objects) for holding the reservation and waitlist data
 
-var reservation = []
-var waitlist = []
+const reservation = []
+const waitlist = []
 
 //Create a set of routes that then display this data as JSONs. Users should be given these JSONs if they visit the appropriate page
 // (i.e. if a user visits localhost:3000/api/tables they should see a JSON of table data).
 
 
 
+app.post("/tables", (req, res) => {
+  const chosen = req.body;
+console.log(req.body);
 
+  if (reservation.length > 5) {
+    waitlist.push(chosen);
+    res.json(waitlist)
+    console.log("We are currently at full capacity, you have been added to the wait list!");
+  }
+  else {
+    reservation.push(chosen)
+    res.json(reservation);
+    console.log("Looks like we have your reservation on file!");
+  }
+})
 
-
-// Basic route that sends the user first to the AJAX Page
+// Basic route that sends the user to the homepage
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "home.html"));
 });
-
+// Route that sends users to the available tables page
 app.get("/tables", function (req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-
+// This route will take users to the reservation list
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"))
+  return res.json(reservation)
 });
 
-app.get("/reserve/:capacity", function(req, res) {
-  let chosen = req.params.capacity;
 
-  console.log(chosen);
+//This route displays capacity, or returns to waiting list. 
 
-  for (var i = 0; reservation.length > 5 ; i++) {
-    if (chosen === reservation) {
-      return res.json(characters[i]);
-    }
-  }
-
-  return res.json(false);
-});
 
 
 
