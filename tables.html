@@ -27,7 +27,7 @@
             <br>
             <div class = "text-center">
             <a href = "/reserve">
-            <button class = "btn btn-lg btn-danger">
+            <button class = "btn btn-lg btn-danger" id = "reservation">
               <span class = "fa fa-credit-card"></span>
               Make Reservation
             </button>
@@ -67,6 +67,7 @@
         </div>
 
         <script type="text/javascript">
+
             //start ajax call
             $.ajax({
                 url:"/api/tables",
@@ -80,11 +81,11 @@
                 var listItem = $("<li class = 'list-group-item mt-4'>")
             
               listItem.append(
-                $("<h2>").val("Table #" + (i+1)),
-                $("<h2>").val("ID: " + tData[i].userID),
-                $("<h2>").val("Name: " + tData[i].userName),
-                $("<h2>").val("Email: " + tData[i].userEmail),
-                $("<h2>").val("Phone: " + tData[i].phoneNumber),
+                $("<h3>").val("Table #" + (i+1)),
+                $("<h3>").val("ID: " + tData[i].userID),
+                $("<h3>").val("Name: " + tData[i].userName),
+                $("<h3>").val("Email: " + tData[i].userEmail),
+                $("<h3>").val("Phone: " + tData[i].phoneNumber),
               );
         
               listItem.appendTo(tableList);
@@ -93,6 +94,6 @@
         
           </script>
         
- </body>
-  </html>
+</body>
+</html>
 
