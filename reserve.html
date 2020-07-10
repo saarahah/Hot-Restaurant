@@ -27,7 +27,7 @@
             <br>
             <div class = "text-center">
             <a href = "/tables.html">
-            <button class = "btn btn-lg btn-danger">
+            <button class = "btn btn-lg btn-danger" id= #view>
               <span class = "fa fa-list-alt"></span>
               View Tables
             </button>
@@ -41,7 +41,6 @@
         </div>
         <div class = "row">
             <div class="col-lg-12">
-                <!-- Reservation Page -->
                 <div class="card">
                   <div class="card-header">
                     Table Reservation
@@ -70,9 +69,27 @@
                 </div>
               </div>
         </div>
-       
-
-
             </div>
+
+            <script type="text/javascript">
+              // Question: What does this code do?
+              $(".submit").on("click", function(event) {
+                event.preventDefault();
+                var newReservation = {
+                  name: $("#reserve-name").val().trim(),
+                  phone: $("#reserve-phone").val().trim(),
+                  email: $("#reserve-email").val().trim(),
+                  uniqueID: $("#reserve-unique-id").val().trim()
+                };
+          
+                // Question: What does this code do??
+                $.post("/api/reservation", newReservation)
+                  .then(function(data) {
+                    console.log("add.html", data);
+                    alert("Adding reservation...");
+                  });
+              });
+            </script>
+
 </body>
 </html>
