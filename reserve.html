@@ -26,13 +26,13 @@
             <h2 class = "text-center">Make Your Reservation</h2>
             <br>
             <div class = "text-center">
-            <a href = "/tables.html">
+            <a href = "tables.html">
             <button class = "btn btn-lg btn-danger" id= #view>
               <span class = "fa fa-list-alt"></span>
               View Tables
             </button>
           </a>
-          <a href = "/">
+          <a href = "home.html">
             <button class="btn btn-lg btn-default">
                 <span class="fa fa-home"></span>
               </button>
@@ -74,7 +74,9 @@
             <script type="text/javascript">
               // Question: What does this code do?
               $(".submit").on("click", function(event) {
+                //prevent default form behavior
                 event.preventDefault();
+                //create a variable for a new reservation
                 var newReservation = {
                   name: $("#reserve-name").val().trim(),
                   phone: $("#reserve-phone").val().trim(),
