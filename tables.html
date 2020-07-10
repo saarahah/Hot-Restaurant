@@ -37,18 +37,17 @@
         </div>
         <div class = "row">
             <div class = "col-lg-12">
-                <div class= "card">
-                    <div class = "card=header">
+                <div class= "card mt-4">
+                    <div class = "card-header">
                         <h4>Current Reservations</h4>
                     </div>
-                    <div class = "card-body">
+                <div class = "card-body">
                         <ul id = "tableList" class = "list-group">
                             <li class = "list-group-item mt-4"></li>
                             <li class = "list-group-item mt-4"></li>
                             <li class = "list-group-item mt-4"></li>
                             <li class = "list-group-item mt-4"></li>
                         </ul>
-                    </div>
                 </div>
                 <div class = "card mt-4">
                     <div class = "card-header">
@@ -66,3 +65,32 @@
             </div>
             </div>
         </div>
+        <script type="text/javascript">
+            //start ajax call
+            $.ajax({
+                url:"/api/tables",
+                method: "GET"
+            }).then(function(tData) {
+                console.log(tData);
+            
+            //for loop to show each reservation by user
+            for (var i=0;i<tData.length; i++) {
+                var tableList = $("#tableList");
+                var listItem = $("<li class = 'list-group-item mt-4'>")
+            
+              listItem.append(
+                $("<h2>").val("Table #" + (i+1)),
+                $("<h2>").val("ID: " + tData[i].userID),
+                $("<h2>").val("Name: " + tData[i].userName),
+                $("<h2>").val("Email: " + tData[i].userEmail),
+                $("<h2>").val("Phone: " + tData[i].phoneNumber),
+              );
+        
+              listItem.appendTo(tableList);
+            }
+            });
+        
+          </script>
+        
+        </body>
+        </html>
